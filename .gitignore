@@ -49,5 +49,6 @@ out
 # TypeScript
 *.tsbuildinfo
 
-# Design
+# Folders
 design
+data
