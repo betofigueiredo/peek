@@ -1,7 +1,11 @@
-import { Group } from "@/components/group";
+import { createFileRoute } from "@tanstack/react-router";
 import { data } from "@/data/smallExample";
 
-function App() {
+export const Route = createFileRoute("/")({
+  component: RouteComponent,
+});
+
+function RouteComponent() {
   // Sample data for demonstration
   // const requests2 = [
   //   {
@@ -190,5 +194,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
