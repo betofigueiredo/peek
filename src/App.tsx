@@ -1,55 +1,60 @@
+import { Group } from "@/components/group";
+import { data } from "@/data/smallExample";
+
 function App() {
   // Sample data for demonstration
-  const requests = [
-    {
-      id: 1,
-      method: "GET",
-      endpoint: "/api/users",
-      status: 200,
-      timestamp: "2025-11-03 14:23:45",
-      responseTime: "234ms",
-      preview:
-        '{"users": [{"id": 1, "name": "John Doe"}, {"id": 2, "name": "Jane Smith"}]}',
-    },
-    {
-      id: 2,
-      method: "POST",
-      endpoint: "/api/auth/login",
-      status: 201,
-      timestamp: "2025-11-03 14:22:18",
-      responseTime: "156ms",
-      preview:
-        '{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", "user": {"id": 5}}',
-    },
-    {
-      id: 3,
-      method: "DELETE",
-      endpoint: "/api/posts/42",
-      status: 204,
-      timestamp: "2025-11-03 14:20:32",
-      responseTime: "89ms",
-      preview: "No content",
-    },
-    {
-      id: 4,
-      method: "PUT",
-      endpoint: "/api/settings/profile",
-      status: 200,
-      timestamp: "2025-11-03 14:18:05",
-      responseTime: "312ms",
-      preview: '{"success": true, "message": "Profile updated successfully"}',
-    },
-    {
-      id: 5,
-      method: "GET",
-      endpoint: "/api/dashboard/stats",
-      status: 500,
-      timestamp: "2025-11-03 14:15:44",
-      responseTime: "1203ms",
-      preview:
-        '{"error": "Internal server error", "code": "ERR_DATABASE_CONNECTION"}',
-    },
-  ];
+  // const requests2 = [
+  //   {
+  //     id: 1,
+  //     method: "GET",
+  //     endpoint: "/api/users",
+  //     status: 200,
+  //     timestamp: "2025-11-03 14:23:45",
+  //     responseTime: "234ms",
+  //     preview:
+  //       '{"users": [{"id": 1, "name": "John Doe"}, {"id": 2, "name": "Jane Smith"}]}',
+  //   },
+  //   {
+  //     id: 2,
+  //     method: "POST",
+  //     endpoint: "/api/auth/login",
+  //     status: 201,
+  //     timestamp: "2025-11-03 14:22:18",
+  //     responseTime: "156ms",
+  //     preview:
+  //       '{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", "user": {"id": 5}}',
+  //   },
+  //   {
+  //     id: 3,
+  //     method: "DELETE",
+  //     endpoint: "/api/posts/42",
+  //     status: 204,
+  //     timestamp: "2025-11-03 14:20:32",
+  //     responseTime: "89ms",
+  //     preview: "No content",
+  //   },
+  //   {
+  //     id: 4,
+  //     method: "PUT",
+  //     endpoint: "/api/settings/profile",
+  //     status: 200,
+  //     timestamp: "2025-11-03 14:18:05",
+  //     responseTime: "312ms",
+  //     preview: '{"success": true, "message": "Profile updated successfully"}',
+  //   },
+  //   {
+  //     id: 5,
+  //     method: "GET",
+  //     endpoint: "/api/dashboard/stats",
+  //     status: 500,
+  //     timestamp: "2025-11-03 14:15:44",
+  //     responseTime: "1203ms",
+  //     preview:
+  //       '{"error": "Internal server error", "code": "ERR_DATABASE_CONNECTION"}',
+  //   },
+  // ];
+
+  const requests = data;
 
   const getMethodColor = (method: string) => {
     const colors: Record<string, string> = {
@@ -92,6 +97,10 @@ function App() {
           </div>
         </div>
       </header>
+
+      {/*<div>
+        <Group />
+      </div>*/}
 
       {/* Main Content */}
       <main className="px-6 py-6">
@@ -138,7 +147,9 @@ function App() {
                     Response Preview
                   </div>
                   <div className="font-mono text-xs text-gray-400 bg-[#151820] px-3 py-2 rounded border border-gray-800 overflow-hidden">
-                    <div className="truncate">{request.preview}</div>
+                    <div className="truncate whitespace-pre-wrap">
+                      {JSON.stringify(request.response).substring(0, 200)}
+                    </div>
                   </div>
                 </div>
                 <div className="ml-4 text-xs text-gray-600">
