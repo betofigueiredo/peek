@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { data } from "@/data/smallExample";
 
 export const Route = createFileRoute("/")({
@@ -79,29 +79,7 @@ function RouteComponent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1d29] text-gray-200">
-      {/* Header */}
-      <header className="border-b border-gray-800 bg-[#1e2230]">
-        <div className="px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">P</span>
-              </div>
-              <h1 className="text-xl font-semibold text-white">Peek</h1>
-            </div>
-            <div className="flex items-center gap-3">
-              <button className="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 transition-colors">
-                Clear All
-              </button>
-              <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors">
-                Export
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <>
       {/*<div>
         <Group />
       </div>*/}
@@ -120,47 +98,51 @@ function RouteComponent() {
         {/* Request List */}
         <div className="space-y-3">
           {requests.map((request) => (
-            <div
+            <Link
               key={request.id}
-              className="bg-[#1e2230] border border-gray-800 rounded-lg p-4 hover:border-gray-700 transition-colors cursor-pointer"
+              to="/requests/$requestId"
+              params={{ requestId: request.id }}
             >
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <span
-                    className={`px-2.5 py-1 text-xs font-medium rounded border ${getMethodColor(
-                      request.method,
-                    )}`}
-                  >
-                    {request.method}
-                  </span>
-                  <span className="text-sm font-mono text-gray-300">
-                    {request.endpoint}
-                  </span>
-                </div>
-                <div className="flex items-center gap-4 text-xs text-gray-500">
-                  <span className={getStatusColor(request.status)}>
-                    {request.status}
-                  </span>
-                  <span>{request.responseTime}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <div className="text-xs text-gray-500 mb-1">
-                    Response Preview
+              About
+              <div className="bg-[#1e2230] border border-gray-800 rounded-lg p-4 hover:border-gray-700 transition-colors cursor-pointer">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`px-2.5 py-1 text-xs font-medium rounded border ${getMethodColor(
+                        request.method,
+                      )}`}
+                    >
+                      {request.method}
+                    </span>
+                    <span className="text-sm font-mono text-gray-300">
+                      {request.endpoint}
+                    </span>
                   </div>
-                  <div className="font-mono text-xs text-gray-400 bg-[#151820] px-3 py-2 rounded border border-gray-800 overflow-hidden">
-                    <div className="truncate whitespace-pre-wrap">
-                      {JSON.stringify(request.response).substring(0, 200)}
+                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <span className={getStatusColor(request.status)}>
+                      {request.status}
+                    </span>
+                    <span>{request.responseTime}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <div className="text-xs text-gray-500 mb-1">
+                      Response Preview
+                    </div>
+                    <div className="font-mono text-xs text-gray-400 bg-[#151820] px-3 py-2 rounded border border-gray-800 overflow-hidden">
+                      <div className="truncate whitespace-pre-wrap">
+                        {JSON.stringify(request.response).substring(0, 200)}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="ml-4 text-xs text-gray-600">
-                  {request.timestamp}
+                  <div className="ml-4 text-xs text-gray-600">
+                    {request.timestamp}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -191,6 +173,6 @@ function RouteComponent() {
           </div>
         )}
       </main>
-    </div>
+    </>
   );
 }
