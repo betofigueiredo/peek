@@ -6,58 +6,6 @@ export const Route = createFileRoute("/")({
 });
 
 function RouteComponent() {
-  // Sample data for demonstration
-  // const requests2 = [
-  //   {
-  //     id: 1,
-  //     method: "GET",
-  //     endpoint: "/api/users",
-  //     status: 200,
-  //     timestamp: "2025-11-03 14:23:45",
-  //     responseTime: "234ms",
-  //     preview:
-  //       '{"users": [{"id": 1, "name": "John Doe"}, {"id": 2, "name": "Jane Smith"}]}',
-  //   },
-  //   {
-  //     id: 2,
-  //     method: "POST",
-  //     endpoint: "/api/auth/login",
-  //     status: 201,
-  //     timestamp: "2025-11-03 14:22:18",
-  //     responseTime: "156ms",
-  //     preview:
-  //       '{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", "user": {"id": 5}}',
-  //   },
-  //   {
-  //     id: 3,
-  //     method: "DELETE",
-  //     endpoint: "/api/posts/42",
-  //     status: 204,
-  //     timestamp: "2025-11-03 14:20:32",
-  //     responseTime: "89ms",
-  //     preview: "No content",
-  //   },
-  //   {
-  //     id: 4,
-  //     method: "PUT",
-  //     endpoint: "/api/settings/profile",
-  //     status: 200,
-  //     timestamp: "2025-11-03 14:18:05",
-  //     responseTime: "312ms",
-  //     preview: '{"success": true, "message": "Profile updated successfully"}',
-  //   },
-  //   {
-  //     id: 5,
-  //     method: "GET",
-  //     endpoint: "/api/dashboard/stats",
-  //     status: 500,
-  //     timestamp: "2025-11-03 14:15:44",
-  //     responseTime: "1203ms",
-  //     preview:
-  //       '{"error": "Internal server error", "code": "ERR_DATABASE_CONNECTION"}',
-  //   },
-  // ];
-
   const { data } = useData();
   const requests = data;
 
@@ -104,8 +52,7 @@ function RouteComponent() {
               to="/requests/$requestId"
               params={{ requestId: request.id }}
             >
-              About
-              <div className="bg-[#1e2230] border border-gray-800 rounded-lg p-4 hover:border-gray-700 transition-colors cursor-pointer">
+              <div className="mb-4 bg-[#1e2230] border border-gray-800 rounded-lg p-4 hover:border-gray-700 transition-colors cursor-pointer">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <span
@@ -134,7 +81,7 @@ function RouteComponent() {
                     </div>
                     <div className="font-mono text-xs text-gray-400 bg-[#151820] px-3 py-2 rounded border border-gray-800 overflow-hidden">
                       <div className="truncate whitespace-pre-wrap">
-                        {JSON.stringify(request.response).substring(0, 200)}
+                        {/*{JSON.stringify(request.response).substring(0, 200)}*/}
                       </div>
                     </div>
                   </div>
