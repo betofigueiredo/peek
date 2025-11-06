@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { data } from "@/data/smallExample";
+import { useData } from "@/hooks/useData";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
@@ -58,6 +58,7 @@ function RouteComponent() {
   //   },
   // ];
 
+  const { data } = useData();
   const requests = data;
 
   const getMethodColor = (method: string) => {

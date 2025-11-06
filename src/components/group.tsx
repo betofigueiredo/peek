@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Combobox } from "@/components/ui/combobox";
-import { data } from "@/data/smallExample";
+import { useData } from "@/hooks/useData";
 
 function Group() {
+  const { data } = useData();
   const [allFields, setAllFields] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function Group() {
     for (const item of data) {
       getFields("", item.response);
     }
-  }, []);
+  }, [data]);
 
   // useEffect(() => {
   //   const grouped = {};

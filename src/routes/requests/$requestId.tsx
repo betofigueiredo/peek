@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { data } from "@/data/smallExample";
+import { useData } from "@/hooks/useData";
 
 export const Route = createFileRoute("/requests/$requestId")({
   component: RouteComponent,
@@ -7,6 +7,7 @@ export const Route = createFileRoute("/requests/$requestId")({
 
 function RouteComponent() {
   const { requestId } = Route.useParams();
+  const { data } = useData();
   const request = data.find((r) => r.id === requestId);
 
   if (!request) {
