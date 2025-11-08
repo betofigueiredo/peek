@@ -48,22 +48,30 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="min-h-screen bg-[#1a1d29] text-gray-200">
+        <div className="min-h-screen bg-gradient-to-br from-[#1a1d2e] via-[#1f2335] to-[#16182a] text-slate-200">
           {/* Header */}
-          <header className="border-b border-gray-800 bg-[#1e2230]">
+          <header className="border-b border-[#2a2f45]/50 bg-gradient-to-r from-[#252837]/95 to-[#1e2230]/90 backdrop-blur-sm shadow-lg">
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <span className="text-white font-bold text-sm">P</span>
+                  <div className="relative w-10 h-10 bg-gradient-to-br from-[#c45f6d] to-[#b54f5d] rounded-lg flex items-center justify-center shadow-lg shadow-[#c45f6d]/20 group-hover:shadow-[#c45f6d]/40 transition-all">
+                    <span className="text-white font-bold text-lg">P</span>
+                    <div className="absolute -top-0.5 -right-0.5 size-2.5 rounded-full bg-cyan-400 border-2 border-[#252837] shadow-sm shadow-cyan-400/50"></div>
                   </div>
-                  <h1 className="text-xl font-semibold text-white">Peek</h1>
+                  <div>
+                    <h1 className="text-xl font-bold text-white tracking-tight">
+                      Peek
+                    </h1>
+                    <p className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
+                      Request Monitor
+                    </p>
+                  </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <button className="px-4 py-2 text-sm text-gray-400 hover:text-gray-200 transition-colors">
+                  <button className="px-4 py-2 text-sm text-slate-400 hover:text-[#c45f6d] hover:bg-[#c45f6d]/10 transition-all duration-200 rounded-lg font-medium">
                     Clear All
                   </button>
-                  <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors">
+                  <button className="px-4 py-2 bg-gradient-to-r from-[#c45f6d] to-[#b54f5d] hover:from-[#d46f7d] hover:to-[#c45f6d] text-white text-sm font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-[#c45f6d]/20 hover:shadow-[#c45f6d]/40">
                     Export
                   </button>
                 </div>

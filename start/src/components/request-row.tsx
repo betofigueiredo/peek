@@ -28,37 +28,41 @@ export function RequestRow({ request }: Props) {
       to="/requests/$requestId"
       params={{ requestId: request.id }}
     >
-      <div className="mb-4 bg-[#1e2230] border border-gray-800 rounded-lg p-4 hover:border-gray-700 transition-colors cursor-pointer">
+      <div className="mb-4 bg-gradient-to-br from-[#252837]/80 to-[#1e2230]/60 border border-[#2a2f45]/50 rounded-lg p-4 hover:border-[#c45f6d]/30 hover:shadow-lg hover:shadow-[#c45f6d]/5 transition-all duration-200 cursor-pointer group">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-3">
             <span
-              className={`px-2.5 py-1 text-xs font-medium rounded border ${getMethodColor(
+              className={`px-2.5 py-1 text-xs font-semibold rounded-md border shadow-sm ${getMethodColor(
                 request.method,
               )}`}
             >
               {request.method}
             </span>
-            <span className="text-sm font-mono text-gray-300">
+            <span className="text-sm font-mono text-slate-200 group-hover:text-white transition-colors">
               {request.endpoint}
             </span>
           </div>
-          <div className="flex items-center gap-4 text-xs text-gray-500">
-            <span className={getStatusColor(request.status)}>
+          <div className="flex items-center gap-4 text-xs text-slate-500">
+            <span className={`font-semibold ${getStatusColor(request.status)}`}>
               {request.status}
             </span>
-            <span>{request.responseTime}</span>
+            <span className="text-slate-600">{request.responseTime}</span>
           </div>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <div className="text-xs text-gray-500 mb-1">Response Preview</div>
-            <div className="font-mono text-xs text-gray-400 bg-[#151820] px-3 py-2 rounded border border-gray-800 overflow-hidden">
+            <div className="text-[10px] text-slate-500 mb-1.5 font-semibold uppercase tracking-wider">
+              Response Preview
+            </div>
+            <div className="font-mono text-xs text-slate-400 bg-[#1a1d2e]/80 px-3 py-2.5 rounded-md border border-[#2a2f45]/50 overflow-hidden shadow-inner">
               <div className="truncate whitespace-pre-wrap">
                 {request.preview}
               </div>
             </div>
           </div>
-          <div className="ml-4 text-xs text-gray-600">{request.timestamp}</div>
+          <div className="ml-4 text-xs text-slate-600 font-medium">
+            {request.timestamp}
+          </div>
         </div>
       </div>
     </Link>
