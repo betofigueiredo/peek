@@ -5,14 +5,17 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
-import { Moon, Sun } from 'lucide-react';
-
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools';
 import { ThemeProvider, useTheme } from '../contexts/theme-context';
 
+import '@fontsource-variable/lora';
+import '@fontsource/ibm-plex-mono/300.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
 import appCss from '../styles.css?url';
 
 import type { QueryClient } from '@tanstack/react-query';
+import { SideBar } from '@/components/side-bar';
 
 interface MyRouterContext {
   queryClient: QueryClient;
@@ -63,9 +66,10 @@ function AppContent({ children }: { children: React.ReactNode }) {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--app-bg-from)] via-[var(--app-bg-via)] to-[var(--app-bg-to)] text-foreground transition-colors duration-300">
+    <div className="min-h-screen pl-24 bg-(--app-bg) text-foreground">
+      <SideBar />
       {/* Header */}
-      <header className="border-b border-[var(--header-border)] bg-gradient-to-r from-[var(--header-bg-from)] to-[var(--header-bg-to)] backdrop-blur-sm">
+      {/*<header className="border-b border-[var(--header-border)] bg-gradient-to-r from-[var(--header-bg-from)] to-[var(--header-bg-to)] backdrop-blur-sm">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -103,7 +107,7 @@ function AppContent({ children }: { children: React.ReactNode }) {
             </div>
           </div>
         </div>
-      </header>
+      </header>*/}
       {children}
       <TanStackDevtools
         config={{

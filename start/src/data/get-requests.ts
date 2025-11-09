@@ -10,7 +10,7 @@ export const getRequests = createServerFn({
     // Load file
     const currentPath = process.cwd();
     const fileDataRaw = await fs.readFile(
-      `${currentPath}/src/example-data/example.json`,
+      `${currentPath}/src/example-data/example3.json`,
       'utf-8',
     );
     const fileData = await JSON.parse(fileDataRaw);

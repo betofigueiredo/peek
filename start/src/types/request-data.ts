@@ -4,7 +4,7 @@ export type RequestData = {
   endpoint: string;
   status: number;
   timestamp: string;
-  responseTime: string;
+  responseTime: number;
   response?: unknown;
   preview: string;
 };

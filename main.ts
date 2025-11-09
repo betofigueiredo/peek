@@ -1,20 +1,16 @@
 import fs from "fs/promises";
-import { data } from "./src/data/example.ts";
+import data from "./start/src/example-data/example.json";
 
 async function main() {
   try {
-    const res = data.map((r) => {
-      if (r.id) return r;
-      return {
-        ...r,
-        id: crypto.randomUUID(),
-        method: "GET",
-        status: 200,
-        responseTime: "230ms",
-      };
+    const res = data?.map((r) => {
+      const valueBetween100And500 =
+        Math.floor(Math.random() * (500 - 100 + 1)) + 100;
+      r.responseTime = valueBetween100And500;
+      return r;
     });
     await fs.writeFile(
-      "src/data/example2.ts",
+      "./start/src/example-data/example3.json",
       `export const data = ${JSON.stringify(res, null, 2)}\n`,
       "utf-8",
     );

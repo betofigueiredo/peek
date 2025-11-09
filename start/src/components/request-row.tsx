@@ -23,11 +23,7 @@ export function RequestRow({ request }: Props) {
   };
 
   return (
-    <Link
-      key={request.id}
-      to="/requests/$requestId"
-      params={{ requestId: request.id }}
-    >
+    <Link to="/requests/$requestId" params={{ requestId: request.id }}>
       <div className="mb-4 bg-gradient-to-br from-[var(--panel-bg-from)] to-[var(--panel-bg-to)] border border-[var(--panel-border)] rounded-lg p-4 hover:border-[#c45f6d]/30 transition-all duration-200 cursor-pointer group">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-3">

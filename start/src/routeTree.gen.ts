@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as V2RouteImport } from './routes/v2'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RequestsRequestIdRouteImport } from './routes/requests/$requestId'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
@@ -21,6 +22,11 @@ import { Route as DemoStartSsrSpaModeRouteImport } from './routes/demo/start.ssr
 import { Route as DemoStartSsrFullSsrRouteImport } from './routes/demo/start.ssr.full-ssr'
 import { Route as DemoStartSsrDataOnlyRouteImport } from './routes/demo/start.ssr.data-only'
 
+const V2Route = V2RouteImport.update({
+  id: '/v2',
+  path: '/v2',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -79,6 +85,7 @@ const DemoStartSsrDataOnlyRoute = DemoStartSsrDataOnlyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/v2': typeof V2Route
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/requests/$requestId': typeof RequestsRequestIdRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/v2': typeof V2Route
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/requests/$requestId': typeof RequestsRequestIdRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -106,6 +114,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/v2': typeof V2Route
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/requests/$requestId': typeof RequestsRequestIdRoute
   '/demo/api/names': typeof DemoApiNamesRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/v2'
     | '/demo/tanstack-query'
     | '/requests/$requestId'
     | '/demo/api/names'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/v2'
     | '/demo/tanstack-query'
     | '/requests/$requestId'
     | '/demo/api/names'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/v2'
     | '/demo/tanstack-query'
     | '/requests/$requestId'
     | '/demo/api/names'
@@ -161,6 +173,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  V2Route: typeof V2Route
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   RequestsRequestIdRoute: typeof RequestsRequestIdRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
@@ -175,6 +188,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/v2': {
+      id: '/v2'
+      path: '/v2'
+      fullPath: '/v2'
+      preLoaderRoute: typeof V2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -257,6 +277,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  V2Route: V2Route,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   RequestsRequestIdRoute: RequestsRequestIdRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
