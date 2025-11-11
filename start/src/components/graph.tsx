@@ -4,8 +4,6 @@ import { getStatusColor } from '@/utils/get-status-color';
 type Props = { requests: Array<RequestData> };
 
 export function Graph({ requests }: Props) {
-  // const requests = [100, 120, 200, 320, 160, 100, 400, 600];
-
   const highest = Math.max(...requests.map((r) => r.responseTime));
 
   function getHeight(value: number) {
