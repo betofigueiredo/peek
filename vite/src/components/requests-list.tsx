@@ -5,7 +5,7 @@ export function RequestsList() {
   const requestsIDs = useRequestStore((state) => state.requestsIDs);
 
   return (
-    <div className="mt-4">
+    <div className="container m-auto pt-8 pb-40">
       {requestsIDs.map((id) => (
         <RequestRow key={id} id={id} />
       ))}

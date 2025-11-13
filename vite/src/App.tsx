@@ -3,6 +3,8 @@ import { FileLoader } from "@/components/file-loader";
 import { SearchInput } from "@/components/search-input";
 import { RequestsList } from "@/components/requests-list";
 import { StatusInput } from "@/components/status-input";
+import { RequestView } from "@/components/request-view";
+import { Graph } from "@/components/graph";
 
 function App() {
   const fileName = useRequestStore((state) => state.fileName);
@@ -12,14 +14,21 @@ function App() {
   }
 
   return (
-    <>
-      <h1 className="text-2xl">Hello</h1>
-      <div>
+    <div>
+      <div className="bg-(--secondary-background) border-b border-(--panel-border)">
+        <div className="container m-auto pt-12">
+          <h1 className="font-title font-semibold text-3xl">Requests</h1>
+          {/*<Filters />*/}
+          <Graph />
+        </div>
+      </div>
+      <div className="container m-auto pt-12">
         <SearchInput />
         <StatusInput />
       </div>
       <RequestsList />
-    </>
+      <RequestView />
+    </div>
   );
 }
 

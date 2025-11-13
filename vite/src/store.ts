@@ -9,7 +9,7 @@ type Request = {
   timestamp: string;
   responseTime: number;
   response: string;
-  responseAsArray?: string[];
+  responseAsArray: string[];
 };
 
 type State = {
@@ -20,12 +20,14 @@ type State = {
   };
   requestsIDs: string[];
   requests: Record<string, Request>;
+  selectedID: string | null;
 };
 
 type Actions = {
   loadFile: (fileName: string, data: Request[]) => void;
   filterByQuery: (query: string) => void;
   filterByStatus: (status: number | null) => void;
+  select: (id: string | null) => void;
 };
 
 function filter(
@@ -54,14 +56,15 @@ export const useRequestStore = create<State & Actions>()(
     },
     requestsIDs: [],
     requests: {},
+    selectedID: null,
+    select: (id: string | null) =>
+      set((state) => {
+        state.selectedID = id;
+      }),
     loadFile: (fileName: string, data: Request[]) =>
       set((state) => {
         data.forEach((request) => {
-          const response = JSON.stringify(
-            request.response,
-            null,
-            2,
-          ).toLowerCase();
+          const response = JSON.stringify(request.response, null, 2);
           state.requests[request.id] = {
             id: request.id,
             method: request.method,
@@ -69,7 +72,7 @@ export const useRequestStore = create<State & Actions>()(
             status: request.status,
             timestamp: request.timestamp,
             responseTime: request.responseTime,
-            response,
+            response: response.toLowerCase(),
             responseAsArray: response.split("\n"),
           };
           state.requestsIDs.push(request.id);
