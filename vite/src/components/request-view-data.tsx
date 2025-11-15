@@ -172,7 +172,7 @@ export function RequestViewData({ id }: { id: string }) {
       </div>
       <div
         onClick={clear}
-        className="absolute top-0 left-0 w-full h-full bg-black z-0 opacity-20"
+        className="fixed top-0 left-0 w-full h-full bg-black z-0 opacity-20"
       ></div>
     </>
   );
