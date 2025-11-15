@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/contexts/theme-provider.tsx";
 import "@fontsource-variable/lora";
 import "@fontsource/ibm-plex-mono/300.css";
 import "@fontsource/ibm-plex-mono/400.css";
