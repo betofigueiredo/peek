@@ -115,7 +115,10 @@
     --sidebar-ring: oklch(0.556 0 0);
 
     --secondary-background: oklch(0.289 0.0384 279.5);
+    --darker-background: oklch(0.2751 0.0334 279.05);
     --panel-border: oklch(0.3625 0.0339 271.01);
+    --input-background: oklch(0.3241 0.0356 279.78);
+    --input-border: oklch(0.4373 0.0295 282.6);
 }
 
 @layer base {

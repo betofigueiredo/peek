@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRequestStore } from "@/store";
+import { Input } from "@/components/ui/input";
 
 export function SearchInput() {
   const [value, setValue] = useState("");
@@ -10,5 +11,14 @@ export function SearchInput() {
     filterByQuery(event.target.value);
   }
 
-  return <input type="text" value={value} onChange={onChange} />;
+  return (
+    <Input
+      id="search-input"
+      type="text"
+      value={value}
+      onChange={onChange}
+      placeholder="Filter requests..."
+      className="w-full px-3 py-2"
+    />
+  );
 }

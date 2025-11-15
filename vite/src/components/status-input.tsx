@@ -22,8 +22,8 @@ export function StatusInput() {
 
   return (
     <Select onValueChange={onValueChange}>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select a status" />
+      <SelectTrigger id="status-input" className="w-[180px]">
+        <SelectValue placeholder="All" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
