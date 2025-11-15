@@ -1,11 +1,15 @@
 import { useEffect, useState, type ReactElement } from "react";
 import { UnfoldVertical } from "lucide-react";
 import { useRequestStore } from "@/store";
+import { getStatusColor } from "@/utils/get-status-color";
+import { formatTimestamp } from "@/utils/format-timestamp";
+import { normalizeString } from "@/utils/normalize-string";
 import { Button } from "@/components/ui/button";
 
 /**
  * TODO:
  * - line numbers fixed size to prevent tab on the code
+ * - show search
  */
 export function RequestViewData({ id }: { id: string }) {
   type Block = { start: number; end: number };
@@ -57,7 +61,7 @@ export function RequestViewData({ id }: { id: string }) {
       let idx = 0;
       while (idx < request.responseAsArray.length) {
         const line = request.responseAsArray[idx].toLowerCase();
-        if (line.includes(search.toLowerCase())) {
+        if (normalizeString(line).includes(search.toLowerCase())) {
           // Prevent overlapping blocks
           const previousBlock = result[result.length - 1];
           const start =
@@ -142,15 +146,16 @@ export function RequestViewData({ id }: { id: string }) {
         if (!line) continue;
 
         const highlight =
-          search && line.toLowerCase().includes(search.toLowerCase())
+          search && normalizeString(line).includes(search.toLowerCase())
             ? "bg-amber-100 text-black"
             : "";
         result.push(
           <div
             key={i}
-            className={`py-1 truncate whitespace-pre-wrap font-mono text-base ${highlight}`}
+            className={`relative py-1 pl-10 truncate whitespace-pre-wrap font-mono text-base ${highlight}`}
           >
-            <span className="opacity-30">{i}</span> {request.responseAsArray[i]}
+            <span className="absolute left-0 opacity-30">{i}</span>{" "}
+            {request.responseAsArray[i]}
           </div>,
         );
       }
@@ -163,10 +168,24 @@ export function RequestViewData({ id }: { id: string }) {
 
   return (
     <>
-      <div className="fixed w-5/6 h-full top-0 right-0 p-7 overflow-auto bg-background border-l border-(--panel-border) z-10">
-        <Button onClick={clear}>close</Button>
-        <div>{request.id}</div>
-        <div className="p-5 bg-(--secondary-background) border border-(--panel-border)">
+      <div className="fixed w-5/6 h-full top-0 right-0 p-7 overflow-auto bg-background border-l border-(--panel-border) z-10 font-mono">
+        <Button onClick={clear} className="mb-10">
+          close
+        </Button>
+        <div
+          className={`w-16 py-1.5 ${getStatusColor(request.status)} border border-gray-900 text-black text-center shrink-0`}
+        >
+          {request.status}
+        </div>
+        <div className="my-5 font-semibold text-lg">{request.endpoint}</div>
+        <div className="flex">
+          <div className="font-medium">{request.method}</div>
+          <div className="px-3 text-gray-600 shrink-0">|</div>
+          <div>{formatTimestamp(request.timestamp)}</div>
+          <div className="px-3 text-gray-600 shrink-0">|</div>
+          <div>{request.responseTime} ms</div>
+        </div>
+        <div className="mt-10 p-5 bg-(--secondary-background) border border-(--panel-border)">
           {renderElements()}
         </div>
       </div>

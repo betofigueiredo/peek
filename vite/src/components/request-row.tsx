@@ -1,5 +1,6 @@
 import { useRequestStore } from "@/store";
 import { getStatusColor } from "@/utils/get-status-color";
+import { formatTimestamp } from "@/utils/format-timestamp";
 
 type Props = { id: string };
 
@@ -23,14 +24,7 @@ export function RequestRow({ id }: Props) {
       </div>
       <div className="pl-4 pr-2 text-gray-600 shrink-0">|</div>
       <div className="text-[#ABAEC4] text-sm text-center w-40 shrink-0">
-        {new Date(request.timestamp).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-          hour12: false,
-        })}
+        {formatTimestamp(request.timestamp)}
       </div>
       <div className="px-3 text-gray-600 shrink-0">|</div>
       <div className="font-medium text-[#ABAEC4] shrink-0 w-10 text-center">

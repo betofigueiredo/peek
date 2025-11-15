@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import { normalizeString } from "@/utils/normalize-string";
 
 type Request = {
   id: string;
@@ -69,7 +70,7 @@ export const useRequestStore = create<State & Actions>()(
             status: request.status,
             timestamp: request.timestamp,
             responseTime: request.responseTime,
-            response: response.toLowerCase(),
+            response: normalizeString(response),
             responseAsArray: response.split("\n"),
           };
           state.requestsIDs.push(request.id);
