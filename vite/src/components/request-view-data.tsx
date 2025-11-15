@@ -103,11 +103,7 @@ export function RequestViewData({ id }: { id: string }) {
   /**
    * Button to expand next lines
    */
-  function addExpandNextLinesButton(
-    block: Block,
-    idx: number,
-    spaces: number,
-  ): ReactElement[] {
+  function addExpandNextLinesButton(block: Block, idx: number): ReactElement[] {
     // First line, no button
     const isLastLine = block.end >= request.responseAsArray.length;
     if (isLastLine) return [];
@@ -124,7 +120,7 @@ export function RequestViewData({ id }: { id: string }) {
         <UnfoldVertical />
       </button>,
       <div
-        key={`space-${spaces}`}
+        key={`space-${block.end}`}
         className="block h-0.5 bg-gray-700 mt-8 mb-10"
       />,
     ];
@@ -135,7 +131,6 @@ export function RequestViewData({ id }: { id: string }) {
    */
   function renderElements(): ReactElement[] {
     const result = [];
-    let spaces = 0;
 
     for (const [idx, block] of blocks.entries()) {
       // Button to expand previous lines
@@ -161,8 +156,7 @@ export function RequestViewData({ id }: { id: string }) {
       }
 
       // Button to expand next lines
-      result.push(...addExpandNextLinesButton(block, idx, spaces));
-      spaces += 1;
+      result.push(...addExpandNextLinesButton(block, idx));
     }
     return result;
   }
