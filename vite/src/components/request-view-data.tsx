@@ -3,14 +3,17 @@ import { UnfoldVertical } from "lucide-react";
 import { useRequestStore } from "@/store";
 import { Button } from "@/components/ui/button";
 
+/**
+ * TODO:
+ * - line numbers fixed size to prevent tab on the code
+ */
 export function RequestViewData({ id }: { id: string }) {
   type Block = { start: number; end: number };
   const request = useRequestStore((state) => state.requests[id]);
   const select = useRequestStore((state) => state.select);
+  const search = useRequestStore((state) => state.filters.query);
   const [blocks, setBlocks] = useState<Block[]>([]);
-  const adjacentLinesToShow = 2;
-
-  const search = "DESENVOLVEDOR";
+  const adjacentLinesToShow = search ? 2 : 20;
 
   function clear() {
     select(null);
@@ -48,26 +51,32 @@ export function RequestViewData({ id }: { id: string }) {
    * Find matchs on first render
    */
   useEffect(() => {
-    // TODO: without search show first 500
+    const result: Block[] = [];
 
-    const result = [];
-    let idx = 0;
-
-    while (idx < request.responseAsArray.length) {
-      const line = request.responseAsArray[idx].toLowerCase();
-      if (line.includes(search.toLowerCase())) {
-        result.push({
-          start: idx - adjacentLinesToShow,
-          end: idx + adjacentLinesToShow + 1,
-        });
-        idx += adjacentLinesToShow + 1;
-      } else {
-        idx += 1;
+    if (search) {
+      let idx = 0;
+      while (idx < request.responseAsArray.length) {
+        const line = request.responseAsArray[idx].toLowerCase();
+        if (line.includes(search.toLowerCase())) {
+          // Prevent overlapping blocks
+          const previousBlock = result[result.length - 1];
+          const start =
+            previousBlock?.end >= idx - adjacentLinesToShow
+              ? previousBlock.end
+              : idx - adjacentLinesToShow;
+          const end = idx + adjacentLinesToShow + 1;
+          result.push({ start, end });
+          idx += adjacentLinesToShow + 1;
+        } else {
+          idx += 1;
+        }
       }
+    } else {
+      result.push({ start: 0, end: 20 });
     }
 
     setBlocks(result);
-  }, [request.responseAsArray]);
+  }, [request.responseAsArray, search, adjacentLinesToShow]);
 
   /**
    * Button to expand previous lines
@@ -137,9 +146,10 @@ export function RequestViewData({ id }: { id: string }) {
         const line = request.responseAsArray[i];
         if (!line) continue;
 
-        const highlight = line.toLowerCase().includes(search.toLowerCase())
-          ? "bg-amber-100 text-black"
-          : "";
+        const highlight =
+          search && line.toLowerCase().includes(search.toLowerCase())
+            ? "bg-amber-100 text-black"
+            : "";
         result.push(
           <div
             key={i}
