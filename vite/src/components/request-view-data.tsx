@@ -13,7 +13,7 @@ export function RequestViewData({ id }: { id: string }) {
   const select = useRequestStore((state) => state.select);
   const search = useRequestStore((state) => state.filters.query);
   const [blocks, setBlocks] = useState<Block[]>([]);
-  const adjacentLinesToShow = search ? 2 : 20;
+  const adjacentLinesToShow = search ? 2 : 1000;
 
   function clear() {
     select(null);
@@ -72,7 +72,7 @@ export function RequestViewData({ id }: { id: string }) {
         }
       }
     } else {
-      result.push({ start: 0, end: 20 });
+      result.push({ start: 0, end: adjacentLinesToShow });
     }
 
     setBlocks(result);
