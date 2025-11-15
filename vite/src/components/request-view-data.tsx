@@ -1,33 +1,43 @@
 import { useEffect, useState, type ReactElement } from "react";
+import { UnfoldVertical } from "lucide-react";
 import { useRequestStore } from "@/store";
 import { Button } from "@/components/ui/button";
-import { UnfoldVertical } from "lucide-react";
 
 export function RequestViewData({ id }: { id: string }) {
   type Block = { start: number; end: number };
   const request = useRequestStore((state) => state.requests[id]);
   const select = useRequestStore((state) => state.select);
   const [blocks, setBlocks] = useState<Block[]>([]);
-  const adjacentLinesToShow = 10;
+  const adjacentLinesToShow = 2;
 
-  const search = "luiz fernando";
+  const search = "DESENVOLVEDOR";
 
   function clear() {
     select(null);
   }
 
   /**
-   * Button to expand and view more lines, up and down
+   * Expand to view more lines, up and down
    */
   function showMoreLines(idx: number) {
-    const updatedBlocks = blocks.map((block) => {
-      // TODO: check if match the previous block
+    const updatedBlocks = blocks.map((block, blockIdx) => {
       if (block.start === idx) {
-        block.start -= adjacentLinesToShow;
+        // Check if match the previous block
+        const prevBlock = blocks[blockIdx - 1];
+        const mergeWithPrev =
+          prevBlock && prevBlock.end >= block.start - adjacentLinesToShow;
+        block.start = mergeWithPrev
+          ? prevBlock.end
+          : block.start - adjacentLinesToShow;
       }
-      // TODO: check if match the next block
       if (block.end === idx) {
-        block.end += adjacentLinesToShow;
+        // Check if match the next block
+        const nextBlock = blocks[blockIdx + 1];
+        const mergeWithNext =
+          nextBlock && nextBlock.start <= block.end + adjacentLinesToShow;
+        block.end = mergeWithNext
+          ? nextBlock.start
+          : block.end + adjacentLinesToShow;
       }
       return block;
     });
@@ -59,25 +69,74 @@ export function RequestViewData({ id }: { id: string }) {
     setBlocks(result);
   }, [request.responseAsArray]);
 
+  /**
+   * Button to expand previous lines
+   */
+  function addExpandPrevLinesButton(block: Block, idx: number): ReactElement[] {
+    // First line, no button
+    const isFirstLine = block.start <= 0;
+    if (isFirstLine) return [];
+
+    // Check if connected to previous block
+    const isConnectedToPrev = blocks[idx - 1]?.end >= block.start;
+    if (isConnectedToPrev) return [];
+
+    return [
+      <button
+        key={`${block.start}-unfold-previous`}
+        onClick={() => showMoreLines(block.start)}
+      >
+        <UnfoldVertical />
+      </button>,
+    ];
+  }
+
+  /**
+   * Button to expand next lines
+   */
+  function addExpandNextLinesButton(
+    block: Block,
+    idx: number,
+    spaces: number,
+  ): ReactElement[] {
+    // First line, no button
+    const isLastLine = block.end >= request.responseAsArray.length;
+    if (isLastLine) return [];
+
+    // Check if connected to previous block
+    const isConnectedToNext = blocks[idx + 1]?.start <= block.end;
+    if (isConnectedToNext) return [];
+
+    return [
+      <button
+        key={`${block.end}-unfold-next`}
+        onClick={() => showMoreLines(block.end)}
+      >
+        <UnfoldVertical />
+      </button>,
+      <div
+        key={`space-${spaces}`}
+        className="block h-0.5 bg-gray-700 mt-8 mb-10"
+      />,
+    ];
+  }
+
+  /**
+   * Render all elements
+   */
   function renderElements(): ReactElement[] {
     const result = [];
     let spaces = 0;
-    for (const block of blocks) {
+
+    for (const [idx, block] of blocks.entries()) {
       // Button to expand previous lines
-      result.push(
-        <button
-          key={`${block.start}-unfold-previous`}
-          onClick={() => showMoreLines(block.start)}
-        >
-          <UnfoldVertical />
-        </button>,
-      );
+      result.push(...addExpandPrevLinesButton(block, idx));
+
       // Render lines
       for (let i = block.start; i < block.end; i++) {
         const line = request.responseAsArray[i];
-        if (!line) {
-          continue;
-        }
+        if (!line) continue;
+
         const highlight = line.toLowerCase().includes(search.toLowerCase())
           ? "bg-amber-100 text-black"
           : "";
@@ -90,21 +149,9 @@ export function RequestViewData({ id }: { id: string }) {
           </div>,
         );
       }
+
       // Button to expand next lines
-      result.push(
-        <button
-          key={`${block.end}-unfold-next`}
-          onClick={() => showMoreLines(block.end)}
-        >
-          <UnfoldVertical />
-        </button>,
-      );
-      result.push(
-        <div
-          key={`space-${spaces}`}
-          className="block h-0.5 bg-gray-700 mt-14 mb-16"
-        />,
-      );
+      result.push(...addExpandNextLinesButton(block, idx, spaces));
       spaces += 1;
     }
     return result;
