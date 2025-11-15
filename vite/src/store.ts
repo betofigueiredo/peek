@@ -16,7 +16,7 @@ type State = {
   fileName: string;
   filters: {
     query: string;
-    status: number | null;
+    status: string;
   };
   requestsIDs: string[];
   requests: Record<string, Request>;
@@ -26,17 +26,17 @@ type State = {
 type Actions = {
   loadFile: (fileName: string, data: Request[]) => void;
   filterByQuery: (query: string) => void;
-  filterByStatus: (status: number | null) => void;
+  filterByStatus: (status: string) => void;
   select: (id: string | null) => void;
 };
 
 function filter(
   requests: Record<string, Request>,
   query: string,
-  status: number | null,
+  status: string,
 ): string[] {
   return Object.values(requests).reduce<string[]>((acc, cur) => {
-    if (status && cur.status !== status) {
+    if (status && String(cur.status).charAt(0) !== status.charAt(0)) {
       return acc;
     }
     if (query && !cur.response.includes(query.toLowerCase())) {
@@ -50,18 +50,15 @@ function filter(
 export const useRequestStore = create<State & Actions>()(
   immer((set) => ({
     fileName: "",
-    filters: {
-      query: "",
-      status: null,
-    },
+    filters: { query: "", status: "" },
     requestsIDs: [],
     requests: {},
     selectedID: null,
-    select: (id: string | null) =>
+    select: (id) =>
       set((state) => {
         state.selectedID = id;
       }),
-    loadFile: (fileName: string, data: Request[]) =>
+    loadFile: (fileName, data) =>
       set((state) => {
         data.forEach((request) => {
           const response = JSON.stringify(request.response, null, 2);
@@ -79,15 +76,15 @@ export const useRequestStore = create<State & Actions>()(
         });
         state.fileName = fileName;
         state.filters.query = "";
-        state.filters.status = null;
+        state.filters.status = "";
       }),
-    filterByQuery: (query: string) =>
+    filterByQuery: (query) =>
       set((state) => {
         const filteredIDs = filter(state.requests, query, state.filters.status);
         state.filters.query = query;
         state.requestsIDs = filteredIDs;
       }),
-    filterByStatus: (status: number | null) =>
+    filterByStatus: (status) =>
       set((state) => {
         const filteredIDs = filter(state.requests, state.filters.query, status);
         state.filters.status = status;

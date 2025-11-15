@@ -20,13 +20,13 @@ function App() {
       <div className="bg-(--secondary-background) border-b border-(--panel-border)">
         <div className="container m-auto pt-12">
           <h1 className="font-title font-semibold text-3xl">Requests</h1>
+          <div className="pt-2 pb-1">
+            <SearchInput />
+            <StatusInput />
+          </div>
           {/*<Filters />*/}
           <Graph />
         </div>
-      </div>
-      <div className="container m-auto pt-12">
-        <SearchInput />
-        <StatusInput />
       </div>
       <RequestsList />
       <RequestView />
