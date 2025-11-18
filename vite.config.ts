@@ -18,4 +18,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: "/peek/", // assets will be prefixed with /peek/
 });
