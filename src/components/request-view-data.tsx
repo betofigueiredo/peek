@@ -16,7 +16,7 @@ export function RequestViewData({ id }: { id: string }) {
   const select = useRequestStore((state) => state.select);
   const search = useRequestStore((state) => state.filters.query);
   const [blocks, setBlocks] = useState<Block[]>([]);
-  const adjacentLinesToShow = search ? 2 : 1000;
+  const adjacentLinesToShow = search ? 36 : 1000;
 
   function clear() {
     select(null);
