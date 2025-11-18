@@ -129,10 +129,10 @@ export function FileLoader() {
 
       <div className="mt-8 flex items-center justify-center">
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-600 to-gray-700 rounded-lg blur opacity-25"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-gray-600 to-gray-700 rounded-lg blur opacity-25"></div>
           <button
             onClick={loadExampleFile}
-            className="relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-lg font-medium hover:from-gray-700 hover:to-gray-800 transition-all duration-200 hover:scale-105 active:scale-95"
+            className="relative flex items-center gap-2 px-6 py-3 bg-linear-to-r from-gray-600 to-gray-700 text-white rounded-lg font-medium hover:from-gray-700 hover:to-gray-800 transition-all duration-200 hover:scale-105 active:scale-95"
           >
             <Sparkles className="w-5 h-5" />
             <span>Try Example File</span>

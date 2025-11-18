@@ -343,7 +343,7 @@
     "id": "2m8k7l58-1no1-5p84-k8no-q94l4021m8m8",
     "method": "POST",
     "status": 503,
-    "responseTime": 701,
+    "responseTime": 501,
     "timestamp": "2025-11-05T20:28:56.678Z",
     "endpoint": "https://api.cloud.com.br/rest/01/batch/import",
     "request": {

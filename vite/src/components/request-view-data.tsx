@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 
 /**
  * TODO:
- * - line numbers fixed size to prevent tab on the code
  * - show search
  */
 export function RequestViewData({ id }: { id: string }) {
@@ -185,7 +184,9 @@ export function RequestViewData({ id }: { id: string }) {
           <div className="px-3 text-gray-600 shrink-0">|</div>
           <div>{request.responseTime} ms</div>
         </div>
-        <div className="mt-10 p-5 bg-(--secondary-background) border border-(--panel-border)">
+        <div className="mt-7 text-gray-600">------</div>
+        <div className="mt-7 mb-3">Response:</div>
+        <div className="p-5 bg-(--secondary-background) border border-(--panel-border)">
           {renderElements()}
         </div>
       </div>

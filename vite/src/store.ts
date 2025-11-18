@@ -33,6 +33,7 @@ type State = {
 
 type Actions = {
   loadFile: (fileName: string, data: RawRequest[]) => void;
+  clear: () => void;
   filterByQuery: (query: string) => void;
   filterByStatus: (status: string) => void;
   select: (id: string | null) => void;
@@ -85,6 +86,14 @@ export const useRequestStore = create<State & Actions>()(
         state.fileName = fileName;
         state.filters.query = "";
         state.filters.status = "";
+      }),
+    clear: () =>
+      set((state) => {
+        state.fileName = "";
+        state.requests = {};
+        state.requestsIDs = [];
+        state.selectedID = null;
+        state.filters = { query: "", status: "" };
       }),
     filterByQuery: (query) =>
       set((state) => {
