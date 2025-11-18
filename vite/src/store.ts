@@ -2,16 +2,23 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { normalizeString } from "@/utils/normalize-string";
 
-type Request = {
+interface BaseRequest {
   id: string;
   method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
   endpoint: string;
   status: number;
   timestamp: string;
   responseTime: number;
+}
+
+export interface RawRequest extends BaseRequest {
+  response: Record<string, unknown>;
+}
+
+export interface Request extends BaseRequest {
   response: string;
   responseAsArray: string[];
-};
+}
 
 type State = {
   fileName: string;
@@ -25,7 +32,7 @@ type State = {
 };
 
 type Actions = {
-  loadFile: (fileName: string, data: Request[]) => void;
+  loadFile: (fileName: string, data: RawRequest[]) => void;
   filterByQuery: (query: string) => void;
   filterByStatus: (status: string) => void;
   select: (id: string | null) => void;

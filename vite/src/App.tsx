@@ -10,11 +10,17 @@ function App() {
   const fileName = useRequestStore((state) => state.fileName);
 
   if (!fileName) {
-    return <FileLoader />;
+    return (
+      <>
+        <NavBar />
+        <FileLoader />
+      </>
+    );
+    return;
   }
 
   return (
-    <div>
+    <>
       <NavBar />
       <div className="bg-(--secondary-background) border-b border-(--panel-border)">
         <div className="container m-auto pt-12">
@@ -25,7 +31,7 @@ function App() {
       </div>
       <RequestsList />
       <RequestView />
-    </div>
+    </>
   );
 }
 
