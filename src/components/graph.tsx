@@ -1,5 +1,10 @@
 import { useRequestStore } from "@/store";
 import { getStatusColor } from "@/utils/get-status-color";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function Graph() {
   const requestsIDs = useRequestStore((state) => state.requestsIDs);
@@ -15,13 +20,19 @@ export function Graph() {
   return (
     <div className="flex items-end w-full h-48 text-left mt-8 px-2 gap-1">
       {requestsIDs.map((requestID) => (
-        <div
-          key={requestID}
-          className={`w-5 ${getStatusColor(requests[requestID].status)}`}
-          style={{
-            height: `${getHeight(requests[requestID].responseTime)}%`,
-          }}
-        />
+        <Tooltip key={requestID}>
+          <TooltipTrigger asChild>
+            <div
+              className={`w-5 ${getStatusColor(requests[requestID].status)}`}
+              style={{
+                height: `${getHeight(requests[requestID].responseTime)}%`,
+              }}
+            />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{requests[requestID].responseTime} ms</p>
+          </TooltipContent>
+        </Tooltip>
       ))}
     </div>
   );
