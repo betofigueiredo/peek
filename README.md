@@ -4,6 +4,7 @@
   <br/><br/>
   <a href="https://github.com/betofigueiredo/peek/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge&labelColor=363a4f&color=a6da95"></a>
   <br/><br/>
+  <img src="https://github.com/user-attachments/assets/31477825-7108-4b2f-8b9b-99f3afd3c95c" alt="Preview" width="100%"/>
 </p>
 
 <h2> :zap: Overview</h2>
