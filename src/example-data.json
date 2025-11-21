@@ -73,16 +73,6 @@
     "responseTime": 345,
     "timestamp": "2025-11-05T20:17:15.456Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users",
-    "request": {
-      "name": "CARLOS EDUARDO SANTOS",
-      "userName": "carlos.eduardo",
-      "externalId": "5",
-      "phone": "+55 11 98765-1234",
-      "email": "carlos.eduardo@mail.com.br",
-      "active": true,
-      "title": "COORDENADOR",
-      "department": "VENDAS"
-    },
     "response": {
       "id": "21745",
       "name": "CARLOS EDUARDO SANTOS",
@@ -118,11 +108,6 @@
     "responseTime": 278,
     "timestamp": "2025-11-05T20:19:05.234Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21742",
-    "request": {
-      "title": "GERENTE",
-      "department": "FINANCEIRO",
-      "phone": "+55 21 99876-5432"
-    },
     "response": {
       "id": "21742",
       "name": "MARIA APARECIDA SOUZA",
@@ -196,11 +181,6 @@
     "responseTime": 267,
     "timestamp": "2025-11-05T20:22:45.123Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users",
-    "request": {
-      "name": "TESTE INVALIDO",
-      "userName": "te",
-      "email": "invalid-email"
-    },
     "response": {
       "error": "Bad Request",
       "message": "Validation failed",
@@ -289,9 +269,6 @@
     "responseTime": 198,
     "timestamp": "2025-11-05T20:26:34.012Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21741",
-    "request": {
-      "active": false
-    },
     "response": {
       "id": "21741",
       "name": "PAULO CÉSAR MOREIRA DA SILVA",
@@ -346,10 +323,6 @@
     "responseTime": 501,
     "timestamp": "2025-11-05T20:28:56.678Z",
     "endpoint": "https://api.cloud.com.br/rest/01/batch/import",
-    "request": {
-      "source": "external-system",
-      "recordCount": 15000
-    },
     "response": {
       "error": "Service Unavailable",
       "message": "Request timeout - service is currently overloaded",
