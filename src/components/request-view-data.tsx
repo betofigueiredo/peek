@@ -182,7 +182,7 @@ export function RequestViewData({ id }: { id: string }) {
           <div className="px-3 text-gray-600 shrink-0">|</div>
           <div>{formatTimestamp(request.timestamp)}</div>
           <div className="px-3 text-gray-600 shrink-0">|</div>
-          <div>{request.responseTime} ms</div>
+          <div>{request.responseTimeInMS} ms</div>
         </div>
         <div className="mt-7 text-gray-600">------</div>
         <div className="mt-7 mb-3">Response:</div>

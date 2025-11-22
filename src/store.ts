@@ -8,7 +8,7 @@ interface BaseRequest {
   endpoint: string;
   status: number;
   timestamp: string;
-  responseTime: number;
+  responseTimeInMS: number;
 }
 
 export interface RawRequest extends BaseRequest {
@@ -77,7 +77,7 @@ export const useRequestStore = create<State & Actions>()(
             endpoint: request.endpoint,
             status: request.status,
             timestamp: request.timestamp,
-            responseTime: request.responseTime,
+            responseTimeInMS: request.responseTimeInMS,
             response: normalizeString(response),
             responseAsArray: response.split("\n"),
           };

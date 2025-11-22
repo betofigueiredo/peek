@@ -3,7 +3,7 @@
     "id": "1bfb6f47-fcd0-4e73-97cd-f83a3910b7b7",
     "method": "GET",
     "status": 200,
-    "responseTime": 212,
+    "responseTimeInMS": 212,
     "timestamp": "2025-11-05T20:16:42.113Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users",
     "response": {
@@ -70,7 +70,7 @@
     "id": "2c8a7b58-1de1-5f84-a8de-g94b4021c8c8",
     "method": "POST",
     "status": 201,
-    "responseTime": 345,
+    "responseTimeInMS": 345,
     "timestamp": "2025-11-05T20:17:15.456Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users",
     "response": {
@@ -92,7 +92,7 @@
     "id": "3d9b8c69-2ef2-6g95-b9ef-h05c5132d9d9",
     "method": "GET",
     "status": 404,
-    "responseTime": 89,
+    "responseTimeInMS": 89,
     "timestamp": "2025-11-05T20:18:23.789Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/99999",
     "response": {
@@ -105,7 +105,7 @@
     "id": "4e0c9d70-3fg3-7h06-c0fg-i16d6243e0e0",
     "method": "PUT",
     "status": 200,
-    "responseTime": 278,
+    "responseTimeInMS": 278,
     "timestamp": "2025-11-05T20:19:05.234Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21742",
     "response": {
@@ -127,7 +127,7 @@
     "id": "5f1d0e81-4gh4-8i17-d1gh-j27e7354f1f1",
     "method": "DELETE",
     "status": 204,
-    "responseTime": 156,
+    "responseTimeInMS": 156,
     "timestamp": "2025-11-05T20:20:12.567Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21743",
     "response": null
@@ -136,7 +136,7 @@
     "id": "6g2e1f92-5hi5-9j28-e2hi-k38f8465g2g2",
     "method": "GET",
     "status": 200,
-    "responseTime": 145,
+    "responseTimeInMS": 145,
     "timestamp": "2025-11-05T20:21:34.890Z",
     "endpoint": "https://api.cloud.com.br/rest/01/departments",
     "response": {
@@ -178,7 +178,7 @@
     "id": "7h3f2g03-6ij6-0k39-f3ij-l49g9576h3h3",
     "method": "POST",
     "status": 400,
-    "responseTime": 267,
+    "responseTimeInMS": 267,
     "timestamp": "2025-11-05T20:22:45.123Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users",
     "response": {
@@ -205,7 +205,7 @@
     "id": "8i4g3h14-7jk7-1l40-g4jk-m50h0687i4i4",
     "method": "GET",
     "status": 200,
-    "responseTime": 423,
+    "responseTimeInMS": 423,
     "timestamp": "2025-11-05T20:23:56.456Z",
     "endpoint": "https://api.cloud.com.br/rest/01/reports/monthly?month=11&year=2025",
     "response": {
@@ -252,7 +252,7 @@
     "id": "9j5h4i25-8kl8-2m51-h5kl-n61i1798j5j5",
     "method": "GET",
     "status": 500,
-    "responseTime": 534,
+    "responseTimeInMS": 534,
     "timestamp": "2025-11-05T20:25:12.789Z",
     "endpoint": "https://api.cloud.com.br/rest/01/analytics/performance",
     "response": {
@@ -266,7 +266,7 @@
     "id": "0k6i5j36-9lm9-3n62-i6lm-o72j2809k6k6",
     "method": "PATCH",
     "status": 200,
-    "responseTime": 198,
+    "responseTimeInMS": 198,
     "timestamp": "2025-11-05T20:26:34.012Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21741",
     "response": {
@@ -288,7 +288,7 @@
     "id": "1l7j6k47-0mn0-4o73-j7mn-p83k3910l7l7",
     "method": "GET",
     "status": 200,
-    "responseTime": 167,
+    "responseTimeInMS": 167,
     "timestamp": "2025-11-05T20:27:45.345Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21742/permissions",
     "response": {
@@ -320,7 +320,7 @@
     "id": "2m8k7l58-1no1-5p84-k8no-q94l4021m8m8",
     "method": "POST",
     "status": 503,
-    "responseTime": 501,
+    "responseTimeInMS": 501,
     "timestamp": "2025-11-05T20:28:56.678Z",
     "endpoint": "https://api.cloud.com.br/rest/01/batch/import",
     "response": {

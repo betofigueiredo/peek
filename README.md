@@ -35,7 +35,7 @@ type Request = {
   endpoint: string;
   status: number;
   timestamp: string;
-  responseTime: number;
+  responseTimeInMS: number;
   response: Record<string, unknown>;
 }
 ```
@@ -48,7 +48,7 @@ Example:
     "id": "4e0c9d70-3fg3-7h06-c0fg-i16d6243e0e0",
     "method": "PUT",
     "status": 200,
-    "responseTime": 278,
+    "responseTimeInMS": 278,
     "timestamp": "2025-11-05T20:19:05.234Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21742",
     "response": {
@@ -70,7 +70,7 @@ Example:
     "id": "0k6i5j36-9lm9-3n62-i6lm-o72j2809k6k6",
     "method": "PATCH",
     "status": 200,
-    "responseTime": 198,
+    "responseTimeInMS": 198,
     "timestamp": "2025-11-05T20:26:34.012Z",
     "endpoint": "https://api.cloud.com.br/rest/01/users/21741",
     "response": {

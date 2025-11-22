@@ -10,7 +10,7 @@ export function Graph() {
   const requestsIDs = useRequestStore((state) => state.requestsIDs);
   const requests = useRequestStore((state) => state.requests);
   const highest = Math.max(
-    ...Object.values(requests).map((r) => r.responseTime),
+    ...Object.values(requests).map((r) => r.responseTimeInMS),
   );
 
   function getHeight(value: number) {
@@ -25,12 +25,12 @@ export function Graph() {
             <div
               className={`w-5 ${getStatusColor(requests[requestID].status)}`}
               style={{
-                height: `${getHeight(requests[requestID].responseTime)}%`,
+                height: `${getHeight(requests[requestID].responseTimeInMS)}%`,
               }}
             />
           </TooltipTrigger>
           <TooltipContent>
-            <p>{requests[requestID].responseTime} ms</p>
+            <p>{requests[requestID].responseTimeInMS} ms</p>
           </TooltipContent>
         </Tooltip>
       ))}
