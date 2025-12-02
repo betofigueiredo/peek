@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactElement } from "react";
-import { UnfoldVertical } from "lucide-react";
+import { UnfoldVertical, X } from "lucide-react";
 import { useRequestStore } from "@/store";
 import { getStatusColor } from "@/utils/get-status-color";
 import { formatTimestamp } from "@/utils/format-timestamp";
@@ -167,10 +167,13 @@ export function RequestViewData({ id }: { id: string }) {
 
   return (
     <>
+      <Button
+        onClick={clear}
+        className="fixed size-12 top-3 right-5/6 mr-3 bg-background border border-(--panel-border) z-10 text-white hover:bg-(--secondary-background) hover:cursor-pointer"
+      >
+        <X className="size-6" />
+      </Button>
       <div className="fixed w-5/6 h-full top-0 right-0 p-7 overflow-auto bg-background border-l border-(--panel-border) z-10 font-mono">
-        <Button onClick={clear} className="mb-10">
-          close
-        </Button>
         <div
           className={`w-16 py-1.5 ${getStatusColor(request.status)} border border-gray-900 text-black text-center shrink-0`}
         >
@@ -184,7 +187,9 @@ export function RequestViewData({ id }: { id: string }) {
           <div className="px-3 text-gray-600 shrink-0">|</div>
           <div>{request.responseTimeInMS} ms</div>
         </div>
-        <div className="mt-7 text-gray-600">------</div>
+        <div className="mt-7 text-gray-600">
+          -----------------------------------
+        </div>
         <div className="mt-7 mb-3">Response:</div>
         <div className="p-5 bg-(--secondary-background) border border-(--panel-border)">
           {renderElements()}
