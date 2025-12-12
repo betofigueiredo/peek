@@ -14,7 +14,10 @@ export function NavBar() {
         <div>PEEK</div>
         <div className="flex items-center">
           {fileName && (
-            <Button className="mr-20" onClick={clear}>
+            <Button
+              className="mr-20 bg-[#5694a0] text-white rounded hover:bg-[#7ab9c5] cursor-pointer hover:scale-104 active:scale-98"
+              onClick={clear}
+            >
               Load new file
             </Button>
           )}
@@ -37,7 +40,6 @@ export function NavBar() {
               />
             </svg>
           </a>
-
           <button
             onClick={toggleTheme}
             className="ml-4 p-2 text-sm dark:text-slate-400 text-gray-600 transition-all duration-200 rounded-lg font-medium"

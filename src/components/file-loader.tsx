@@ -1,6 +1,7 @@
 import { useRequestStore, type RawRequest } from "@/store";
 import { Upload, FileJson, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import exampleData from "@/example-data.json";
 
 export function FileLoader() {
@@ -100,7 +101,7 @@ export function FileLoader() {
             ${
               isDragging
                 ? "bg-gray-500 text-white scale-110"
-                : "bg-accent text-muted-foreground"
+                : "bg-accent/30 border border-gray-700 text-muted-foreground"
             }
           `}
           >
@@ -114,7 +115,7 @@ export function FileLoader() {
             <p className="text-sm text-muted-foreground">or click to browse</p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-muted-foreground bg-accent/50 px-4 py-2 rounded-full">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground bg-accent/30 px-4 py-2 rounded-full">
             <FileJson className="w-4 h-4" />
             <span>Supports .json files</span>
           </div>
@@ -130,13 +131,13 @@ export function FileLoader() {
       <div className="mt-8 flex items-center justify-center">
         <div className="relative">
           <div className="absolute inset-0 bg-linear-to-r from-gray-600 to-gray-700 rounded-lg blur opacity-25"></div>
-          <button
+          <Button
+            className="relative flex items-center gap-2 font-mono font-semibold bg-[#5694a0] text-white rounded hover:bg-[#7ab9c5] cursor-pointer hover:scale-104 active:scale-98"
             onClick={loadExampleFile}
-            className="relative flex items-center gap-2 px-6 py-3 bg-linear-to-r from-gray-600 to-gray-700 text-white rounded-lg font-medium hover:from-gray-700 hover:to-gray-800 transition-all duration-200 hover:scale-105 active:scale-95"
           >
             <Sparkles className="w-5 h-5" />
             <span>Try Example File</span>
-          </button>
+          </Button>
         </div>
       </div>
 
