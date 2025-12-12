@@ -15,6 +15,7 @@ export function StatusInput() {
     const values = {
       "2xx": "2xx",
       "4xx": "4xx",
+      "5xx": "5xx",
       all: "",
     };
     filterByStatus(values[(value as keyof typeof values) || ""]);
@@ -30,6 +31,7 @@ export function StatusInput() {
           <SelectItem value="all">All</SelectItem>
           <SelectItem value="2xx">2xx</SelectItem>
           <SelectItem value="4xx">4xx</SelectItem>
+          <SelectItem value="5xx">5xx</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
